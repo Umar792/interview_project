@@ -2,13 +2,14 @@ import React from "react";
 import "./Home.css";
 import { AiFillEye } from "react-icons/ai";
 import { MdOutlineLightMode } from "react-icons/md";
+import { MdCompareArrows } from "react-icons/md"
 
 const Index = () => {
   return (
     <div className="home">
       <Header />
       {/* --- body  */}
-      <div className="home_api_box   mx-auto h-[full] flex-col px-[86px] py-[150px] w-[577px] flex justify-center mt-[-81px]">
+      <div className="home_api_box   mx-auto  flex-col px-[86px] py-[100px] w-[577px] flex h-auto !justify-center mt-[-81px]">
         <img src="./data/logo.png" alt="" />
         <div className="my-[47px]">
           <div className="flex justify-start place-items-center border-b-2 text-[white] ">
@@ -41,7 +42,29 @@ const Index = () => {
               />
             </div>
           </div>
+          {/* --- */}
+          <div className="w-full flex justify-between place-items-center my-[10px] p-[20px] text-white">
+            <p className="text-white text-[16px]">1 BNB = 3.47 LTC  |  1 LTC = 0.288435 BNB</p>
+            <MdCompareArrows className="text-[23px] cursor-pointer text-[#EDC524]" />
+          </div>
+          <button>X Swap</button>
+          <div className="bg-[#0e0d0df5] p-[20px] rounded-sm border-1 border-[rgba(255, 255, 255, 0.05)] my-[28px] text-white">
+            <div className="flex justify-between place-items-center my-1 text-[16px]">
+              <p> Price Impact Liquidity Provider Fee</p>
+              <p>3.5LTC</p>
+            </div>
+            <div className="flex justify-between place-items-center my-1 text-[16px]">
+              <p>Price Impact</p>
+              <p>48.54%</p>
+            </div>
+            <div className="flex justify-between place-items-center my-1 text-[16px]">
+              <p>Liquidity Provider Fee</p>
+              <p>0.11BNB</p>
+            </div>
+          </div>
         </div>
+        {/* ---- */}
+
       </div>
     </div>
   );
