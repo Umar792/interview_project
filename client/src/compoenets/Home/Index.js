@@ -9,7 +9,7 @@ const Index = () => {
     <div className="home">
       <Header />
       {/* --- body  */}
-      <div className="home_api_box   mx-auto  flex-col px-[86px] py-[100px] w-[577px] flex h-auto !justify-center mt-[-81px]">
+      <div className="home_api_box   mx-auto  flex-col px-[86px] py-[50px] w-[577px] flex h-auto !justify-center ">
         <img src="./data/logo.png" alt="" />
         <div className="my-[47px]">
           <div className="flex justify-start place-items-center border-b-2 text-[white] ">

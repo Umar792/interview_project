@@ -27,6 +27,7 @@
   );
   position: relative;
   z-index: 2;
+  /* background-color: black; */
 }
 
 .home_api_box::before {
