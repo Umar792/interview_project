@@ -14,6 +14,8 @@ const Index = () => {
   const [search, setSearch] = useState("")
   const [name, setName] = useState("BNB")
   const [selectedCoinDetails, setSelectedCoinDetails] = useState(null);
+  const [bnbPrice, setBnbPrice] = useState(null);
+
 
   useEffect(() => {
     // Function to fetch data from the API
@@ -81,8 +83,36 @@ const Index = () => {
 
 
   // Function to handle X Swap button click
-  const handleXSwapClick = () => {
-    fetchCoinDetails();
+  const handleXSwapClick = async () => {
+    await fetchCoinDetails(selectedSymbol);
+
+    // Check for the existence of necessary data
+    if (selectedCoinDetails && selectedCoinDetails.tickers && selectedCoinDetails.tickers.length > 0) {
+      const ticker = selectedCoinDetails.tickers[0];
+
+      // Check for the necessary properties in the ticker
+      if (ticker && ticker.converted_last && ticker.converted_last.usd) {
+        // Extract data
+        const coinPriceInUSD = ticker.converted_last.usd;
+
+        // Check for numeric input
+        const input1Value = parseFloat(input1);
+
+        if (!isNaN(input1Value) && input1Value !== 0) {
+          // Calculate 1 BNB price based on the input value and selected coin's data
+          const calculatedBnbPrice = (input1Value / coinPriceInUSD).toFixed(4);
+
+          // Update the state with the calculated 1 BNB price
+          setBnbPrice(calculatedBnbPrice);
+        } else {
+          console.error('Invalid or zero input value.');
+        }
+      } else {
+        console.error('Missing necessary properties in the ticker data.');
+      }
+    } else {
+      console.error('Missing necessary data for calculation.');
+    }
   };
 
 
@@ -176,8 +206,8 @@ const Index = () => {
           <button onClick={handleXSwapClick}>X Swap</button>
           <div className="bg-[#0e0d0df5] p-[20px] rounded-sm border-1 border-[rgba(255, 255, 255, 0.05)] my-[28px] text-white">
             <div className="flex justify-between place-items-center my-1 text-[16px]">
-              <p> Price Impact Liquidity Provider Fee</p>
-              <p>3.5LTC</p>
+              <p>1 BNB Price</p>
+              <p>{bnbPrice} BNB</p>
             </div>
             <div className="flex justify-between place-items-center my-1 text-[16px]">
               <p>Price Impact</p>
