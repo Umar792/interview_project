@@ -59,13 +59,13 @@ const Index = () => {
     setCoinData(filterthecoin)
   }, [search])
 
-  useEffect(() => {
-    if (input1 === "") {
-      setShowDropdown(false)
-    } else {
-      setShowDropdown(true)
-    }
-  }, [input1])
+  // useEffect(() => {
+  //   if (input1 === "") {
+  //     setShowDropdown(false)
+  //   } else {
+  //     setShowDropdown(true)
+  //   }
+  // }, [input1])
   // ========= single coin  
   const fetchCoinDetails = async (coinId) => {
     try {
@@ -131,11 +131,13 @@ const Index = () => {
               className="w-[80%] bg-transparent p-2 outline-none "
             />
             <div className="flex justify-start place-items-center gap-[10px]">
-              <h2 className=" w-[80px] text-right">{name}</h2>
+              <h2 className=" w-[80px] text-right cursor-pointer" onClick={() => setShowDropdown(true)}
+              >{name}</h2>
               <img
                 src="./data/b.png"
                 alt=""
-                className="!w-[20px] !h-[20px] object-contain"
+                className="!w-[20px] !h-[20px] object-contain cursor-pointer"
+                onClick={() => setShowDropdown(true)}
               />
 
             </div>
