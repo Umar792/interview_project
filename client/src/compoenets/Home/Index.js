@@ -89,20 +89,12 @@ const Index = () => {
     // Check for the existence of necessary data
     if (selectedCoinDetails && selectedCoinDetails.tickers && selectedCoinDetails.tickers.length > 0) {
       const ticker = selectedCoinDetails.tickers[0];
-
-      // Check for the necessary properties in the ticker
       if (ticker && ticker.converted_last && ticker.converted_last.usd) {
-        // Extract data
         const coinPriceInUSD = ticker.converted_last.usd;
-
-        // Check for numeric input
         const input1Value = parseFloat(input1);
 
         if (!isNaN(input1Value) && input1Value !== 0) {
-          // Calculate 1 BNB price based on the input value and selected coin's data
           const calculatedBnbPrice = (input1Value / coinPriceInUSD).toFixed(4);
-
-          // Update the state with the calculated 1 BNB price
           setBnbPrice(calculatedBnbPrice);
         } else {
           console.error('Invalid or zero input value.');
