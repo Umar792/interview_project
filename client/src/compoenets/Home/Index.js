@@ -89,6 +89,9 @@ const Index = () => {
   const handleXSwapClick = async () => {
     await fetchCoinDetails(selectedSymbol);
 
+
+  };
+  useEffect(() => {
     // Check for the existence of necessary data
     if (selectedCoinDetails && selectedCoinDetails.tickers && selectedCoinDetails.tickers.length > 0) {
       const ticker = selectedCoinDetails.tickers[0];
@@ -108,7 +111,7 @@ const Index = () => {
     } else {
       console.error('Missing necessary data for calculation.');
     }
-  };
+  }, [selectedCoinDetails])
 
 
 
