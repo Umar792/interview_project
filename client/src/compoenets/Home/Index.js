@@ -206,8 +206,8 @@ const Index = () => {
           <button onClick={handleXSwapClick}>X Swap</button>
           <div className="bg-[#0e0d0df5] p-[20px] rounded-sm border-1 border-[rgba(255, 255, 255, 0.05)] my-[28px] text-white">
             <div className="flex justify-between place-items-center my-1 text-[16px]">
-              <p>1 BNB Price</p>
-              <p>{bnbPrice} BNB</p>
+              <p>1 BNB Price in {name}</p>
+              <p>{bnbPrice} {name}</p>
             </div>
             <div className="flex justify-between place-items-center my-1 text-[16px]">
               <p>Price Impact</p>
