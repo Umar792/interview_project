@@ -85,3 +85,7 @@ button {
   border-radius: 2px;
   background: radial-gradient(50% 50% at 50% 50%, #f0c724 0%, #d09c17 100%);
 }
+button:disabled {
+  background: radial-gradient(50% 50% at 50% 50%, #f0c7247a 0%, #d09c177c 100%);
+  cursor: no-drop;
+}

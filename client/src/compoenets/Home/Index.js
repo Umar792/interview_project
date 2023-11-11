@@ -15,14 +15,16 @@ const Index = () => {
   const [name, setName] = useState("BNB")
   const [selectedCoinDetails, setSelectedCoinDetails] = useState(null);
   const [bnbPrice, setBnbPrice] = useState(null);
+  const [loading, setloading] = useState(false)
 
 
   useEffect(() => {
     // Function to fetch data from the API
     const fetchData = async () => {
       try {
+        setloading(true)
         const response = await fetch('https://api.coingecko.com/api/v3/coins/list?include_platform=false');
-
+        setloading(false)
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -67,8 +69,9 @@ const Index = () => {
   // ========= single coin  
   const fetchCoinDetails = async (coinId) => {
     try {
+      setloading(true)
       const response = await fetch(`https://api.coingecko.com/api/v3/coins/${selectedSymbol}?tickers=true&market_data=false&community_data=true&developer_data=true&sparkline=true`);
-
+      setloading(false)
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -192,24 +195,29 @@ const Index = () => {
           </div>
           {/* --- */}
           <div className="w-full flex justify-between place-items-center my-[10px] p-[20px] text-white">
-            <p className="text-white text-[16px]">1 BNB = 3.47 LTC  |  1 LTC = 0.288435 BNB</p>
+            <p className="text-white text-[16px]">1 BNB = {bnbPrice} {name}  |  {input1} {name} = 1 BNB</p>
+
+
             <MdCompareArrows className="text-[23px] cursor-pointer text-[#EDC524]" />
           </div>
-          <button onClick={handleXSwapClick}>X Swap</button>
+          {
+            loading ? <button disabled>X Swap</button> : <button onClick={handleXSwapClick}>X Swap</button>
+          }
           <div className="bg-[#0e0d0df5] p-[20px] rounded-sm border-1 border-[rgba(255, 255, 255, 0.05)] my-[28px] text-white">
             <div className="flex justify-between place-items-center my-1 text-[16px]">
               <p>1 BNB Price in {name}</p>
               <p>{bnbPrice} {name}</p>
             </div>
-            <div className="flex justify-between place-items-center my-1 text-[16px]">
+          </div>
+
+          {/* <div className="flex justify-between place-items-center my-1 text-[16px]">
               <p>Price Impact</p>
               <p>48.54%</p>
             </div>
             <div className="flex justify-between place-items-center my-1 text-[16px]">
               <p>Liquidity Provider Fee</p>
               <p>0.11BNB</p>
-            </div>
-          </div>
+            </div> */}
         </div>
         {/* ---- */}
 
